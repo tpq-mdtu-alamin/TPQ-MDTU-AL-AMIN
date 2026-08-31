@@ -1,6 +1,6 @@
 {
-  "name": "Pendaftaran Santri TPQ & MDTU Al Amin",
-  "short_name": "PSB Al Amin",
+  "name": "Al Amin",
+  "short_name": "Al Amin",
   "description": "Sistem Informasi dan Pendaftaran Santri Baru TPQ & MDTU Al Amin",
   "lang": "id-ID",
   "start_url": "./index.html",
