@@ -1,4 +1,4 @@
-const CACHE_NAME = 'psb-al-amin-v1';
+const CACHE_NAME = 'psb-al-amin-v2';
 const APP_FILES = [
   './',
   './index.html',
