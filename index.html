@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#075a43">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PSB Al Amin">
+  <title>TPQ & MDTU Al Amin</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #075a43; }
+    iframe { display: block; width: 100%; height: 100%; border: 0; background: white; }
+    #installButton {
+      position: fixed; right: 16px; bottom: 18px; z-index: 9999;
+      display: none; padding: 12px 18px; border: 0; border-radius: 999px;
+      color: #073f30; background: #ffbf00; font: 700 14px Arial, sans-serif;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25); cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    src="https://script.google.com/a/~/macros/s/AKfycbxpb0p98w-QpRygtAXQMejsViFopnnt8vVDlZRzdyIdtbrlN8zAyXfZi729fiJmIb2quQ/exec"
+    title="Pendaftaran Santri TPQ dan MDTU Al Amin"
+    allow="camera; geolocation; clipboard-read; clipboard-write"
+  ></iframe>
+  <button id="installButton" type="button">Instal Aplikasi</button>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
+
+    let installPrompt = null;
+    const installButton = document.getElementById('installButton');
+
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      installPrompt = event;
+      installButton.style.display = 'block';
+    });
+
+    installButton.addEventListener('click', async function () {
+      if (!installPrompt) return;
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      installButton.style.display = 'none';
+    });
+
+    window.addEventListener('appinstalled', function () {
+      installButton.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
