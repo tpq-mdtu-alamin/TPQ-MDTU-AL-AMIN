@@ -16,12 +16,6 @@
     * { box-sizing: border-box; }
     html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #075a43; }
     iframe { display: block; width: 100%; height: 100%; border: 0; background: white; }
-    #installButton {
-      position: fixed; right: 16px; bottom: 18px; z-index: 9999;
-      display: none; padding: 12px 18px; border: 0; border-radius: 999px;
-      color: #073f30; background: #ffbf00; font: 700 14px Arial, sans-serif;
-      box-shadow: 0 6px 18px rgba(0,0,0,.25); cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -30,34 +24,6 @@
     title="Pendaftaran Santri TPQ dan MDTU Al Amin"
     allow="camera; geolocation; clipboard-read; clipboard-write"
   ></iframe>
-  <button id="installButton" type="button">Instal Aplikasi</button>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./service-worker.js');
-      });
-    }
-
-    let installPrompt = null;
-    const installButton = document.getElementById('installButton');
-
-    window.addEventListener('beforeinstallprompt', function (event) {
-      event.preventDefault();
-      installPrompt = event;
-      installButton.style.display = 'block';
-    });
-
-    installButton.addEventListener('click', async function () {
-      if (!installPrompt) return;
-      installPrompt.prompt();
-      await installPrompt.userChoice;
-      installPrompt = null;
-      installButton.style.display = 'none';
-    });
-
-    window.addEventListener('appinstalled', function () {
-      installButton.style.display = 'none';
-    });
-  </script>
+  
 </body>
 </html>
